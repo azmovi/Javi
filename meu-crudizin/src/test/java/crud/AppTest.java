@@ -1,4 +1,4 @@
-package app;
+package crud;
 
 import static org.junit.Assert.assertTrue;
 
