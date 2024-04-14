@@ -4,12 +4,12 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>ufscar.web</groupId>
-  <artifactId>ConversorServlet</artifactId>
+  <groupId>br.ufscar.dc.dsw</groupId>
+  <artifactId>AloMundoMVN</artifactId>
   <version>1.0-SNAPSHOT</version>
   <packaging>war</packaging>
 
-  <name>ConversorServlet Maven Webapp</name>
+  <name>AloMundoMVN Maven Webapp</name>
   <!-- FIXME change it to the project's website -->
   <url>http://www.example.com</url>
 
@@ -41,7 +41,7 @@
   </dependencies>
 
   <build>
-    <finalName>ConversorServlet</finalName>
+    <finalName>AloMundoMVN</finalName>
     <plugins>
     <plugin>
       <groupId>org.apache.tomcat.maven</groupId>
