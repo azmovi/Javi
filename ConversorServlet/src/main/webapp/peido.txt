@@ -1,0 +1,34 @@
+<%@ page import="ufscar.web..Usuario" %>
+<%
+resp.setCharacterEncoding("UTF-8");
+resp.getWriter().println("<!DOCTYPE html>");
+resp.getWriter().println("<html>");
+resp.getWriter().println("<head>");
+resp.getWriter().println("<title>Servlet PrintParamsServlet</title>");
+resp.getWriter().println("<style>");
+resp.getWriter().println("table, th, td{ border: 1px solid;}");
+resp.getWriter().println("td{ text-align: center;}");
+resp.getWriter().println("</style>");
+resp.getWriter().println("</head>");
+resp.getWriter().println("<body>");
+resp.getWriter().println("<table>");
+resp.getWriter().println("<tr>");
+resp.getWriter().println("<th>Celcius</th>");
+resp.getWriter().println("<th>Fahrenheit</th>");
+resp.getWriter().println("<th>Kelvin</th>");
+resp.getWriter().println("</tr>");
+for (int celsius = min; celsius <= max; celsius += incremento)
+{
+    double fahr = 1.8 * celsius + 32;
+    double kelvin = celsius + 273.15;
+    resp.getWriter().println("<tr>");
+    resp.getWriter().println("<td>" + celsius + "</td>");
+    resp.getWriter().println("<td>" +  fahr + "</td>");
+    resp.getWriter().println("<td>" + String.format("%.2f", kelvin) + "</td>");
+    resp.getWriter().println("</tr>");
+}
+resp.getWriter().println("</table>");
+resp.getWriter().println("</body>");
+resp.getWriter().println("</html>");
+}
+%>

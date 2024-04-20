@@ -1,4 +1,4 @@
-package ufscar.web;
+package br.ufscar.dc.dsw.beans;
 
 public class ConversorServelet
 {
