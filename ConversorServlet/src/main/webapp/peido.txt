@@ -5,18 +5,18 @@ resp.getWriter().println("<!DOCTYPE html>");
 resp.getWriter().println("<html>");
 resp.getWriter().println("<head>");
 resp.getWriter().println("<title>Servlet PrintParamsServlet</title>");
-resp.getWriter().println("<style>");
-resp.getWriter().println("table, th, td{ border: 1px solid;}");
-resp.getWriter().println("td{ text-align: center;}");
-resp.getWriter().println("</style>");
+<style>");
+table, th, td{ border: 1px solid;}");
+td{ text-align: center;}");
+</style>");
 resp.getWriter().println("</head>");
 resp.getWriter().println("<body>");
-resp.getWriter().println("<table>");
-resp.getWriter().println("<tr>");
-resp.getWriter().println("<th>Celcius</th>");
-resp.getWriter().println("<th>Fahrenheit</th>");
-resp.getWriter().println("<th>Kelvin</th>");
-resp.getWriter().println("</tr>");
+"<table>");
+"<tr>");
+"<th>Celcius</th>");
+"<th>Fahrenheit</th>");
+"<th>Kelvin</th>");
+"</tr>");
 for (int celsius = min; celsius <= max; celsius += incremento)
 {
     double fahr = 1.8 * celsius + 32;

@@ -16,17 +16,17 @@
                 <legend><fmt:message key="titulo" /></legend>
 
                 <label for="valor_minimo"><fmt:message key="minimo" /></label> <br>
-                <input type="number" id="valor_minimo" name="valor_minimo" min="-459"/><br>
+                <input type="number" id="minimo" name="minimo" min="-459"/><br>
 
                 <br>
 
                 <label for="valor_maximo"><fmt:message key="maximo" /></label> <br>
-                <input type="number" id="valor_maximo" name="valor_maximo"/> <br>
+                <input type="number" id="maximo" name="maximo"/> <br>
 
                 <br>
 
                 <label for="valor_incremento"><fmt:message key="incremento" /></label> <br>
-                <input type="number" id="valor_incremento" name="valor_incremento"/> <br>
+                <input type="number" id="incremento" name="incremento"/> <br>
 
                 <br>
                 <button type="button" onclick="valoresDefault()"><fmt:message key="padrao" /></button>
@@ -36,9 +36,9 @@
     </fmt:bundle>
     <script>
         function valoresDefault() {
-            document.getElementById("valor_minimo").value = -100;
-            document.getElementById("valor_maximo").value = 100;
-            document.getElementById("valor_incremento").value = 5;
+            document.getElementById("minimo").value = -100;
+            document.getElementById("maximo").value = 100;
+            document.getElementById("incremento").value = 5;
         }
     </script>
 </body>
