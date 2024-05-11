@@ -1,0 +1,6 @@
+br/ufscar/dc/dsw/dao/StudioDAO.class
+br/ufscar/dc/dsw/dao/GenericDAO.class
+br/ufscar/dc/dsw/domain/Studio.class
+br/ufscar/dc/dsw/dao/FilmeDAO.class
+br/ufscar/dc/dsw/domain/Filme.class
+br/ufscar/dc/dsw/controller/FilmeController.class
