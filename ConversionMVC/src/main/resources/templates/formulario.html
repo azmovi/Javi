@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Conversor</title>
+        <style>
+            form { width: 30%; }
+        </style>
+    </head>
+    <body>
+
+        <form th:action="@{/converter}" th:object="${converter}" method="post">
+            <fieldset>
+                <legend> test </legend>
+
+                <label for="valor_minimo"> </label> <br>
+                <input type="number" id="minimo" name="minimo" min="-459" th:field="*{min}"/><br>
+
+                <br>
+
+                <label for="valor_maximo"> </label> <br>
+                <input type="number" id="maximo" name="maximo" th:field="*{max}"/> <br>
+
+                <br>
+
+                <label for="valor_incremento"> </label> <br>
+                <input type="number" id="incremento" name="incremento" th:field="*{inc}"/> <br>
+
+                <br>
+                <button type="button" onclick="valoresDefault()"> default </button>
+                <input type="submit">
+            </fieldset>
+        </form>
+        <script>
+            function valoresDefault() {
+                document.getElementById("minimo").value = -100;
+                document.getElementById("maximo").value = 100;
+                document.getElementById("incremento").value = 5;
+            }
+        </script>
+    </body>
+</html>
