@@ -2,35 +2,35 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
     <head>
-        <title>Conversor</title>
+        <title th:text="#{titulo.text}">Conversor</title>
         <style>
             form { width: 30%; }
         </style>
     </head>
     <body>
-
         <form th:action="@{/converter}" th:object="${converter}" method="post">
             <fieldset>
-                <legend> test </legend>
+                <legend th:text="#{medidas.text}"></legend>
 
-                <label for="valor_minimo"> </label> <br>
+                <label for="minimo"> <span th:text="#{minimo.text}"> </span> </label> <br>
                 <input type="number" id="minimo" name="minimo" min="-459" th:field="*{min}"/><br>
 
                 <br>
 
-                <label for="valor_maximo"> </label> <br>
+                <label for="maximo"> <span th:text="#{maximo.text}"></span>:</label> <br>
                 <input type="number" id="maximo" name="maximo" th:field="*{max}"/> <br>
 
                 <br>
 
-                <label for="valor_incremento"> </label> <br>
+                <label for="incremento"><span th:text="#{incremento.text}"></span>:</label> <br>
                 <input type="number" id="incremento" name="incremento" th:field="*{inc}"/> <br>
 
                 <br>
-                <button type="button" onclick="valoresDefault()"> default </button>
-                <input type="submit">
+                <button type="button" onclick="valoresDefault()"> <span th:text="#{padrao.text}"></span></button>
+                <input type="submit" th:value="#{enviar.text}">
             </fieldset>
         </form>
+
         <script>
             function valoresDefault() {
                 document.getElementById("minimo").value = -100;
@@ -40,3 +40,4 @@
         </script>
     </body>
 </html>
+
