@@ -1,6 +1,7 @@
 package br.ufscar.dc.dsw.controller;
 
 import jakarta.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
 import br.ufscar.dc.dsw.domain.Studio;
 import br.ufscar.dc.dsw.service.spec.IStudioService;
 
@@ -38,7 +40,7 @@ public class StudioController {
         }
 
         service.salvar(studio);
-        attr.addFlashAttribute("sucess", "Studio inserido com sucesso.");
+        attr.addFlashAttribute("success", "Studio inserido com sucesso.");
         return "redirect:/studios/listar";
     }
 
@@ -54,20 +56,25 @@ public class StudioController {
             return "studio/cadastro";
         }
 
+        // Apenas rejeita se o problema não for com o CNPJ (CNPJ campo read-only)
+        if (result.getFieldErrorCount() > 1 || result.getFieldError("CNPJ") == null) {
+            return "studio/cadastro";
+        }
+
         service.salvar(studio);
-        attr.addFlashAttribute("sucess", "Studio editado com sucesso.");
+        attr.addFlashAttribute("success", "Studio editado com sucesso.");
         return "redirect:/studios/listar";
     }
 
     @GetMapping("/excluir/{id}")
-    public String excluir(@PathVariable("id") Long id, RedirectAttributes attr) {
+    public String excluir(@PathVariable("id") Long id, ModelMap model) {
         if (service.studioTemFilmes(id)) {
-            attr.addFlashAttribute("fail", "Studio não excluído. Possui Filme(s) vinculado(s).");
+            model.addAttribute("fail", "Studio não excluída. Possui filme(s) vinculado(s).");
         } else {
             service.excluir(id);
-            attr.addFlashAttribute("sucess", "Studio excluído com sucesso.");
+            model.addAttribute("success", "Studio excluída com sucesso.");
         }
-        return "redirect:/studios/listar";
+        return listar(model);
     }
 }
 

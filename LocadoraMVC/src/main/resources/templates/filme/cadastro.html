@@ -5,92 +5,116 @@
 </head>
 <body>
 
-	<section class="layout-content" layout:fragment="corpo">
+    <section class="layout-content" layout:fragment="corpo">
 
-		<nav class="navbar navbar-expand-md bg-light">
-			<div class="collapse navbar-collapse" id="navbarsExampleDefault">
-				<ul class="navbar-nav mr-auto">
-					<li class="nav-item active"><i class="oi oi-caret-right"></i>
-						<span>Cadastrar Filmes</span></li>
-				</ul>
-			</div>
-			<a class="btn btn-primary btn-md" th:href="@{/filmes/listar}"
-				role="button"> <span class="oi oi-spreadsheet" title="Cadastro"
-				aria-hidden="true"></span> <span>Listar Filmes</span>
-			</a>
-		</nav>
+        <nav class="navbar navbar-expand-md bg-light">
+            <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active"><i class="oi oi-caret-right"></i>
+                        <span>Cadastrar Filmes</span></li>
+                </ul>
+            </div>
+            <a class="btn btn-primary btn-md" th:href="@{/filmes/listar}"
+                role="button"> <span class="oi oi-spreadsheet" title="Cadastro"
+                aria-hidden="true"></span> <span>Listar Filmes</span>
+            </a>
+        </nav>
 
-		<div class="container" id="cadastro">
+        <div class="container" id="cadastro">
 
-			<div th:replace="~{fragments/alert}"></div>
+            <div th:replace="~{fragments/alert}"></div>
 
-			<form
-				th:action="${filme.id == null} ? @{/filmes/salvar} : @{/filmes/editar}"
-				th:object="${filme}" method="POST">
+            <form th:action="${filme.id == null} ? @{/filmes/salvar} : @{/filmes/editar}"
+                th:object="${filme}" method="POST">
 
-				<div class="form-row">
-					<div class="form-group col-md-6">
-						<label for="nome">Título</label> 
-						<input type="text" class="form-control" id="nome" placeholder="Título"
-							autofocus="autofocus" th:field="*{titulo}"
-							th:classappend="${#fields.hasErrors('titulo')} ? is-invalid" />
-						
-						<div class="invalid-feedback">
-							<span th:errors="*{titulo}"></span>
-						</div>
-					</div>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="titulo">Título</label> 
+                        <input type="text" class="form-control" id="titulo" placeholder="Título"
+                            th:field="*{titulo}"
+                            th:classappend="${#fields.hasErrors('titulo')} ? 'is-invalid'" autofocus="autofocus" />
 
-					<div class="form-group col-md-6">
-						<label for="nome">Diretor</label> 
-						<input type="text" class="form-control" id="nome" placeholder="diretor"
-							autofocus="autofocus" th:field="*{diretor}"
-							th:classappend="${#fields.hasErrors('diretor')} ? is-invalid" />
+                        <div class="invalid-feedback">
+                            <span th:errors="*{titulo}"></span>
+                        </div>
+                    </div>
 
-						<div class="invalid-feedback">
-							<span th:errors="*{diretor}"></span>
-						</div>
-					</div>
+                    <div class="form-group col-md-6">
+                        <label for="diretor">Diretor</label> 
+                        <input type="text" class="form-control" id="diretor" placeholder="Diretor"
+                            th:field="*{diretor}"
+                            th:classappend="${#fields.hasErrors('diretor')} ? 'is-invalid'" />
 
-					<div class="form-group col-md-6">
-						<label for="studio">Studio</label> 
-						<select id="studio" class="form-control" th:field="*{studio}"
-							th:classappend="${#fields.hasErrors('studio')} ? is-invalid">
-							<option value="">Selecione</option>
-							<option th:each="studio: ${studios}" th:value="${studio.id}"
-								th:text="${studio.nome}"></option>
-						</select>
+                        <div class="invalid-feedback">
+                            <span th:errors="*{diretor}"></span>
+                        </div>
+                    </div>
 
-						<div class="invalid-feedback">
-							<span th:errors="*{studio}"></span>
-						</div>
-					</div>
+                    <div class="form-group col-md-6">
+                        <label for="studio">Studio</label> 
+                        <select id="studio" class="form-control" th:field="*{studio}"
+                            th:classappend="${#fields.hasErrors('studio')} ? 'is-invalid'">
+                            <option value="">Selecione</option>
+                            <option th:each="studio : ${studios}" th:value="${studio.id}"
+                                th:text="${studio.nome}"></option>
+                        </select>
 
-					<div class="form-group col-md-6">
-						<label for="nome">Data</label> 
-						<input type="date" class="form-control" id="nome" placeholder="Data"
-							autofocus="autofocus" th:field="*{data}"
-							th:classappend="${#fields.hasErrors('data')} ? is-invalid" />
-						
-						<div class="invalid-feedback">
-							<span th:errors="*{data}"></span>
-						</div>
-					</div>
+                        <div class="invalid-feedback">
+                            <span th:errors="*{studio}"></span>
+                        </div>
+                    </div>
 
-					<div class="form-group col-md-6">
-						<label for="Nota">Nota</label> 
-						<input type="text" class="form-control" id="nota" placeholder="Nota"
-							data-mask="00,0" data-mask-reverse="true" th:field="*{nota}"
-							th:classappend="${#fields.hasErrors('nota')} ? is-invalid" />
-						
-						<div class="invalid-feedback">
-							<span th:errors="*{nota}"></span>
-						</div>
-					</div>
-				</div>
-				<input type="hidden" id="id" th:field="*{id}" />
-				<button type="submit" class="btn btn-primary btn-sm">Salvar</button>
-			</form>
-		</div>
-	</section>
+                    <div class="form-group col-md-6">
+                        <label for="genero">Gênero</label> 
+                        <input type="text" class="form-control" id="genero" placeholder="Gênero"
+                            th:field="*{genero}"
+                            th:classappend="${#fields.hasErrors('genero')} ? 'is-invalid'" />
+
+                        <div class="invalid-feedback">
+                            <span th:errors="*{genero}"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group col-md-6">
+                        <label for="ano">Ano</label> 
+                        <input type="number" class="form-control" id="ano" placeholder="Ano"
+                            th:field="*{ano}"
+                            th:classappend="${#fields.hasErrors('ano')} ? 'is-invalid'" />
+                        
+                        <div class="invalid-feedback">
+                            <span th:errors="*{ano}"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group col-md-6">
+                        <label for="nota">Nota</label> 
+                        <input type="number" class="form-control" id="nota" placeholder="Nota"
+                            step="0.1" min="0" max="10"
+                            th:field="*{nota}"
+                            th:classappend="${#fields.hasErrors('nota')} ? 'is-invalid'" />
+                        
+                        <div class="invalid-feedback">
+                            <span th:errors="*{nota}"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group col-md-6">
+                        <label for="orcamento">Orçamento</label> 
+                        <input type="text" class="form-control" id="orcamento" placeholder="Orçamento"
+                            data-mask="000000,00" data-mask-reverse="true" th:field="*{orcamento}"
+                            th:classappend="${#fields.hasErrors('orcamento')} ? 'is-invalid'" />
+                        
+                        <div class="invalid-feedback">
+                            <span th:errors="*{orcamento}"></span>
+                        </div>
+                    </div>
+                </div>
+                
+                <input type="hidden" id="id" th:field="*{id}" />
+                <button type="submit" class="btn btn-primary btn-sm">Salvar</button>
+            </form>
+        </div>
+    </section>
 </body>
 </html>
+

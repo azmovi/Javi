@@ -17,68 +17,69 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import br.ufscar.dc.dsw.domain.Studio;
 import br.ufscar.dc.dsw.domain.Filme;
-import br.ufscar.dc.dsw.service.spec.IFilmeService;
 import br.ufscar.dc.dsw.service.spec.IStudioService;
+import br.ufscar.dc.dsw.service.spec.IFilmeService;
 
 @Controller
 @RequestMapping("/filmes")
 public class FilmeController {
 
-    @Autowired
-    private IFilmeService filmeService;
+	@Autowired
+	private IFilmeService filmeService;
 
-    @Autowired
-    private IStudioService studioService;
+	@Autowired
+	private IStudioService studioService;
 
-    @GetMapping("/cadastrar")
-    public String cadastrar(Filme filme) {
-        return "filme/cadastro";
-    }
+	@GetMapping("/cadastrar")
+	public String cadastrar(Filme filme) {
+		return "filme/cadastro";
+	}
 
-    @GetMapping("/listar")
-    public String listar(ModelMap model) {
-        model.addAttribute("filmes", filmeService.buscarTodos());
-        return "filme/lista";
-    }
+	@GetMapping("/listar")
+	public String listar(ModelMap model) {
+		model.addAttribute("filmes", filmeService.buscarTodos());
+		return "filme/lista";
+	}
 
-    @PostMapping("/salvar")
-    public String salvar(@Valid Filme filme, BindingResult result, RedirectAttributes attr) {
-        if (result.hasErrors()) {
-            return "filme/cadastro";
-        }
+	@PostMapping("/salvar")
+	public String salvar(@Valid Filme filme, BindingResult result, RedirectAttributes attr) {
 
-        filmeService.salvar(filme);
-        attr.addFlashAttribute("sucess", "Filme inserido com sucesso.");
-        return "redirect:/filmes/listar";
-    }
+		if (result.hasErrors()) {
+			return "filme/cadastro";
+		}
 
-    @GetMapping("/editar/{id}")
-    public String preEditar(@PathVariable("id") Long id, ModelMap model) {
-        model.addAttribute("filme", filmeService.buscarPorId(id));
-        return "filme/cadastro";
-    }
+		filmeService.salvar(filme);
+		attr.addFlashAttribute("sucess", "Filme inserido com sucesso");
+		return "redirect:/filmes/listar";
+	}
 
-    @PostMapping("/editar")
-    public String editar(@Valid Filme filme, BindingResult result, RedirectAttributes attr) {
-        if (result.hasErrors()) {
-            return "filme/cadastro";
-        }
+	@GetMapping("/editar/{id}")
+	public String preEditar(@PathVariable("id") Long id, ModelMap model) {
+		model.addAttribute("filme", filmeService.buscarPorId(id));
+		return "filme/cadastro";
+	}
 
-        filmeService.salvar(filme);
-        attr.addFlashAttribute("sucess", "Filme editado com sucesso.");
-        return "redirect:/filmes/listar";
-    }
+	@PostMapping("/editar")
+	public String editar(@Valid Filme filme, BindingResult result, RedirectAttributes attr) {
 
-    @GetMapping("/excluir/{id}")
-    public String excluir(@PathVariable("id") Long id, RedirectAttributes attr) {
-        filmeService.excluir(id);
-        attr.addFlashAttribute("sucess", "Filme excluído com sucesso.");
-        return "redirect:/filmes/listar";
-    }
+		if (result.hasErrors()) {
+			return "filme/cadastro";
+		}
 
-    @ModelAttribute("studios")
-    public List<Studio> listaStudios() {
-        return studioService.buscarTodos();
-    }
+		filmeService.salvar(filme);
+		attr.addFlashAttribute("sucess", "filme editado com sucesso.");
+		return "redirect:/filmes/listar";
+	}
+
+	@GetMapping("/excluir/{id}")
+	public String excluir(@PathVariable("id") Long id, RedirectAttributes attr) {
+		filmeService.excluir(id);
+		attr.addFlashAttribute("sucess", "Filme excluído com sucesso.");
+		return "redirect:/filmes/listar";
+	}
+
+	@ModelAttribute("studios")
+	public List<Studio> listaStudios() {
+		return studioService.buscarTodos();
+	}
 }
-

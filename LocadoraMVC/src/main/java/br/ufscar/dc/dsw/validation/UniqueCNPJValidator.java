@@ -10,15 +10,15 @@ import br.ufscar.dc.dsw.dao.IStudioDAO;
 import br.ufscar.dc.dsw.domain.Studio;
 
 @Component
-public class UniqueCnpjValidator implements ConstraintValidator<UniqueCnpj, String> {
+public class UniqueCNPJValidator implements ConstraintValidator<UniqueCNPJ, String> {
 
 	@Autowired
 	private IStudioDAO dao;
 
 	@Override
-	public boolean isValid(String cnpj, ConstraintValidatorContext context) {
+	public boolean isValid(String CNPJ, ConstraintValidatorContext context) {
 		if (dao != null) {
-			Studio studio = dao.findByCnpj(cnpj);
+			Studio studio = dao.findByCNPJ(CNPJ);
 			return studio == null;
 		} else {
 			return true;

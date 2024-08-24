@@ -8,11 +8,11 @@ import java.lang.annotation.Target;
 import jakarta.validation.Constraint;
 import jakarta.validation.Payload;
 
-@Constraint(validatedBy = UniqueCnpjValidator.class)
+@Constraint(validatedBy = UniqueCNPJValidator.class)
 @Target(ElementType.FIELD)
 @Retention(RetentionPolicy.RUNTIME)
-public @interface UniqueCnpj {
-    String message() default "cnpj is already registered";
+public @interface UniqueCNPJ {
+    String message() default "CNPJ is already registered";
     Class<?>[] groups() default { };
     Class<? extends Payload>[] payload() default { };
 }

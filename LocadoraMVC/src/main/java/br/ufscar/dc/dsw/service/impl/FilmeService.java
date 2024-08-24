@@ -12,7 +12,7 @@ import br.ufscar.dc.dsw.service.spec.IFilmeService;
 
 @Service
 @Transactional(readOnly = false)
-public class FilmeService implements IFilmeService {
+public class FilmeService implements IFilmeService{
 
 	@Autowired
 	IFilmeDAO dao;

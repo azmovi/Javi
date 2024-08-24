@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html layout:decorate="~{layout}">
 <head>
-    <meta charset="UTF-8" />
-    <title>Lista de Studios</title>
+<meta charset="UTF-8" />
 </head>
 <body>
     <section class="layout-content" layout:fragment="corpo">
@@ -23,6 +22,7 @@
         </nav>
 
         <div class="container" id="listagem">
+
             <div th:replace="~{fragments/alert}"></div>
 
             <div class="table-responsive">
@@ -39,7 +39,7 @@
                     <tbody>
                         <tr th:each="studio : ${studios}">
                             <td th:text="${studio.id}"></td>
-                            <td th:text="${studio.cnpj}"></td>
+                            <td th:text="${studio.CNPJ}"></td>
                             <td th:text="${studio.nome}"></td>
                             <td th:text="${studio.ano}"></td>
                             <td>
@@ -48,7 +48,7 @@
                                     <span class="oi oi-brush" title="Editar" aria-hidden="true"></span>
                                 </a>
                                 <button
-                                    th:id="${'btn_studios/excluir/' + studio.id}"
+                                    th:id="'btn_studios_excluir_' + ${studio.id}"
                                     type="button" class="btn btn-danger btn-sm"
                                     data-toggle="modal" data-target="#myModal">
                                     <span class="oi oi-circle-x" title="Excluir" aria-hidden="true"></span>

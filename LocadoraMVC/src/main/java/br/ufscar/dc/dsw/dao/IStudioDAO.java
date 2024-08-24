@@ -11,7 +11,7 @@ public interface IStudioDAO extends CrudRepository<Studio, Long>{
 
 	Studio findById(long id);
 	
-	Studio findByCnpj (String cnpj);
+	Studio findByCNPJ (String CNPJ);
 
 	List<Studio> findAll();
 	

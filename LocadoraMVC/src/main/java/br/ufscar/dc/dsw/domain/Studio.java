@@ -8,41 +8,39 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
-import jakarta.validation.constraints.NotNull;
 
-import br.ufscar.dc.dsw.validation.UniqueCnpj;
+import br.ufscar.dc.dsw.validation.UniqueCNPJ;
 
 @SuppressWarnings("serial")
 @Entity
 @Table(name = "Studio")
 public class Studio extends AbstractEntity<Long> {
 
-    @UniqueCnpj(message = "{Unique.studio.cnpj}")
-    @NotBlank(message = "{NotBlank.studio.cnpj}")
-    @Size(min = 18, max = 18, message = "{Size.studio.cnpj}")
+    @UniqueCNPJ(message = "{Unique.studio.CNPJ}")
+    @NotBlank
+    @Size(min = 18, max = 18, message = "{Size.studio.CNPJ}")
     @Column(nullable = false, unique = true, length = 18)
-    private String cnpj;
-    
-    @NotBlank(message = "{NotBlank.studio.nome}")
+    private String CNPJ;
+
+    @NotBlank
     @Size(min = 3, max = 60, message = "{Size.studio.nome}")
     @Column(nullable = false, length = 60)
     private String nome;
 
-    @NotNull(message = "{NotNull.studio.ano}")
     @Column(nullable = false)
     private Integer ano;
 
     @OneToMany(mappedBy = "studio")
     private List<Filme> filmes;
-    
-    public String getCnpj() {
-        return cnpj;
+
+    public String getCNPJ() {
+        return CNPJ;
     }
 
-    public void setCnpj(String cnpj) {
-        this.cnpj = cnpj;
+    public void setCNPJ(String CNPJ) {
+        this.CNPJ = CNPJ;
     }
-    
+
     public String getNome() {
         return nome;
     }
