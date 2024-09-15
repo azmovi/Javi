@@ -6,12 +6,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import br.ufscar.dc.dsw.domain.Loja;
@@ -28,7 +32,7 @@ public class LojaRestController {
     public ResponseEntity<List<Loja>> lista() {
         List<Loja> lista = service.buscarTodos();
         if (lista.isEmpty()) {
-            return ResponseEntity.noContent().build();
+            return ResponseEntity.notFound().build();
         }
         return ResponseEntity.ok(lista);
     }
@@ -43,40 +47,33 @@ public class LojaRestController {
     }
 
     @PostMapping
-    public ResponseEntity<Loja> cria(@RequestBody Loja loja) {
-        try {
-            service.salvar(loja);
-            return ResponseEntity.status(HttpStatus.CREATED).body(loja);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return ResponseEntity.status(HttpStatus.UNPROCESSABLE_ENTITY).body(null);
-        }
+	@ResponseBody
+    public ResponseEntity<Loja> cria(@Valid @RequestBody Loja loja, BindingResult result) {
+		if (result.hasErrors()) {
+			return ResponseEntity.badRequest().build();
+		}
+		service.salvar(loja);
+		return ResponseEntity.ok(loja);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Loja> atualiza(@PathVariable("id") long id, @RequestBody Loja loja) {
-        try {
-            Loja lojaExistente = service.buscarPorId(id);
-            if (lojaExistente == null) {
-                return ResponseEntity.notFound().build();
-            }
-            loja.setId(id);
-            service.salvar(loja);
-            return ResponseEntity.ok(loja);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return ResponseEntity.status(HttpStatus.UNPROCESSABLE_ENTITY).body(null);
-        }
+    public ResponseEntity<Loja> atualiza(@PathVariable("id") long id, @Valid @RequestBody Loja loja, BindingResult result) {
+        if (result.hasErrors()) {
+			return ResponseEntity.badRequest().build();
+		}
+        loja.setId(id);
+		service.salvar(loja);
+        return ResponseEntity.ok(loja);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> remove(@PathVariable("id") long id) {
+    public ResponseEntity<Boolean> remove(@PathVariable("id") long id) {
         Loja loja = service.buscarPorId(id);
         if (loja == null) {
             return ResponseEntity.notFound().build();
         }
         service.excluir(id);
-        return ResponseEntity.noContent().build();
+        return new ResponseEntity<Boolean>(true, HttpStatus.OK);
     }
 }
 

@@ -38,7 +38,7 @@ public class Item extends AbstractEntity<Long> {
     
 	@NotNull(message = "{NotNull.Item.Loja}")
 	@ManyToOne
-	@JoinColumn(name = "loja_id")
+	@JoinColumn(name = "lojaId")
     @JsonBackReference
 	private Loja loja;
 

@@ -10,6 +10,7 @@ import jakarta.persistence.CascadeType;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import br.ufscar.dc.dsw.validation.UniqueCNPJ;
@@ -96,6 +97,5 @@ public class Loja extends AbstractEntity<Long> {
 	public void setItens(List<Item> Itens) {
 		this.Itens = Itens;
 	}
+
 }
-
-
